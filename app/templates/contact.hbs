@@ -1,2 +1,24 @@
-<h1>Contact</h1>
-{{outlet}}
+<div class="jumbotron text-center">
+  {{#if responseMessage}}
+  <div class="alert alert-success">{{responseMessage}}</div>
+  {{/if}}
+
+  <h1>Contact</h1>
+
+  <br/>
+
+  <p>Want more information? Send us a message and we will respond</p>
+
+  <div class="form-horizontal form-group form-group-lg row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      {{input class="form-control" placeholder="Please type your email address" autofocus="autofocus" type="email" value=emailAddress}}
+    </div>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" style="margin-top: 3vw">
+      {{textarea class="form-control" placeholder="Your message. (At least 5 characters)" rows="7" value=message}}
+    </div>
+    <div class="col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-7 col-md-3 col-md-offset-7" style="margin-top: 3vw">
+        <button disabled={{isDisabled}} class="btn btn-primary btn-lg btn-block" {{action 'sendMessage'}}>Send message</button>
+    </div>
+  </div>
+  <br/><br/>
+</div>
