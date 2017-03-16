@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
       const newInvitation = this.store.createRecord('invitation', { email: email });
 
       newInvitation.save()
-      .then( res => {
+      .then( () => {
         // NOTE: the first param in the this.set() method must be the same as the name given in the {{#if}}{{/if}} conditional in the templates/index.hbs
         this.set('responseMessage', `Thank you! We've just saved your email address: ${this.get('emailAddress')}`);
         this.set('emailAddress', '');
