@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  headerMessage: 'Coming Soon',
   emailAddress: '',
+  responseMessage: '',
 
   isValid: Ember.computed.match('emailAddress', /^.+@.+\..+$/),
 
@@ -9,11 +11,15 @@ export default Ember.Controller.extend({
 
   actions: {
     saveInvitation() {
-      alert(`Saving of the following email address is in progress: ${this.get('emailAddress')}`);
+      const email = this.get('emailAddress');
+      const newInvitation = this.store.createRecord('invitation', { email: email });
 
-      // NOTE: the first param in the this.set() method must be the same as the name given in the {{#if}}{{/if}} conditional in the templates/index.hbs
-      this.set('responseMessage', `Thank you! We've just saved your email address: ${this.get('emailAddress')}`);
-      this.set('emailAddress', '');
+      newInvitation.save()
+      .then( res => {
+        // NOTE: the first param in the this.set() method must be the same as the name given in the {{#if}}{{/if}} conditional in the templates/index.hbs
+        this.set('responseMessage', `Thank you! We've just saved your email address: ${this.get('emailAddress')}`);
+        this.set('emailAddress', '');
+      });
     }
   }
 
