@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  
+
   model(params) {
     return this.store.findRecord('library', params.library_id);
   },
@@ -22,7 +22,7 @@ export default Ember.Route.extend({
       newLibrary.save()
       .then( () => {
         this.transitionTo('libraries');
-      })
+      });
     },
 
     willTransition(transition) {
